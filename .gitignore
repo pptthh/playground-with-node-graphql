@@ -40,5 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated PostCSS runtime (emitted from postcss.config.ts)
-postcss.config.cjs
+

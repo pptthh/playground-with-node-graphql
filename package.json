@@ -6,12 +6,11 @@
   "scripts": {
     "clean": "rm -rf dist .next",
     "clean-dev": "pnpm run clean && pnpm i && pnpm run dev",
-    "dev": "node scripts/emit-postcss-cjs.js && next dev",
-    "build": "node scripts/emit-postcss-cjs.js && next build",
-    "start": "node scripts/emit-postcss-cjs.js && next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "check": "eslint",
-    "lint": "NODE_OPTIONS='-r ts-node/register' eslint",
-    "test:postcss": "node test/validate-postcss-config.js"
+    "lint": "NODE_OPTIONS='-r ts-node/register' eslint"
   },
   "keywords": [
     "node",
