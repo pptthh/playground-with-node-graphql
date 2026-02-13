@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "check": "eslint",
-    "lint": "NODE_OPTIONS='-r ts-node/register' eslint"
+    "lint": "eslint"
   },
   "keywords": [
     "node",
