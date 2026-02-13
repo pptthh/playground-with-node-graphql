@@ -3,21 +3,44 @@
   "version": "0.0.1",
   "description": "playing with node and graphql nextjs to learn",
   "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc",
-    "test": ""
+ "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": ["node", "graphql", "typescript", "api", "nextjs", "learning"],
+  "keywords": [
+    "node",
+    "graphql",
+    "typescript",
+    "api",
+    "nextjs",
+    "learning",
+    "tracker"
+  ],
   "author": "Tóth Péter",
   "license": "ISC",
   "dependencies": {
+    "graphql": "16.9.0",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "socket.io": "4.8.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "4.1.18",
+    "babel-plugin-react-compiler": "1.0.0",
     "@types/node": "25.2.3",
-    "graphql": "16.9.0",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "@types/uuid": "9.0.0",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.3",
     "next": "15.1.4",
+    "postcss": "8.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "tailwindcss": "3.4.19",
     "typescript": "5.7.2"
   },
   "engines": {
