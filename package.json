@@ -4,8 +4,8 @@
   "description": "playing with node and graphql nextjs to learn",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf dist .next",
-    "clean-dev": "pnpm run clean && pnpm i && pnpm lint && pnpm run build && pnpm run dev",
+    "clean": "pnpm cache delete && rm -rf dist .next",
+    "clean-dev": "pnpm clean && pnpm i && pnpm lint && pnpm build && pnpm dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
