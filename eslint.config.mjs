@@ -55,13 +55,5 @@ export default defineConfig([
     },
   },
 
-  {
-    files: ['**/*.{jsx,tsx,js}'],
-    settings: { react: { version: 'detect' } },
-    rules: {
-      ...(reactHooksPlugin.configs?.recommended?.rules ?? {}),
-      ...(jsxA11yPlugin.configs?.recommended?.rules ?? {}),
-      'react/prop-types': 'off',
-    },
-  },
+
 ]);
