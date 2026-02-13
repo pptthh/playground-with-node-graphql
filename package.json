@@ -10,8 +10,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy": "pnpm cy:open",
+    "cy:open": "DISPLAY= cypress open",
+    "cy:run": "DISPLAY= cypress run"
   },
   "keywords": [
     "node",
