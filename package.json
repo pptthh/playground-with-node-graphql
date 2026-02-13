@@ -5,11 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist .next",
-    "clean-dev": "pnpm run clean && pnpm i && pnpm run dev",
+    "clean-dev": "pnpm run clean && pnpm i && pnpm lint && pnpm run build && pnpm run dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check": "eslint",
     "lint": "eslint"
   },
   "keywords": [
