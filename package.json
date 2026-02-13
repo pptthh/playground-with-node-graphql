@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "cy": "pnpm cy:open",
+    "cy:debug": "DEBUG=cypress:* pnpm cy:open",
     "cy:open": "DISPLAY= cypress open",
     "cy:run": "DISPLAY= cypress run"
   },
