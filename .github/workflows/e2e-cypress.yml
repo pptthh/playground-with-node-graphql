@@ -1,0 +1,42 @@
+name: E2E — Cypress
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  e2e:
+    name: E2E tests (Cypress)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Enable Corepack (pnpm)
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next app
+        run: pnpm build
+
+      - name: Run Cypress E2E
+        uses: cypress-io/github-action@v5
+        with:
+          start: pnpm start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 120000
+          command: pnpm run cy:run
