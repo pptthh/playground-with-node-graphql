@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "rm -rf dist .next",
     "clean-dev": "pnpm run clean && pnpm i && pnpm run dev",
-    "dev": "NODE_OPTIONS='-r ts-node/register' next dev",
-    "build": "NODE_OPTIONS='-r ts-node/register' next build",
-    "start": "NODE_OPTIONS='-r ts-node/register' next start",
+    "dev": "node scripts/emit-postcss-cjs.js && next dev",
+    "build": "node scripts/emit-postcss-cjs.js && next build",
+    "start": "node scripts/emit-postcss-cjs.js && next start",
     "check": "eslint",
     "lint": "NODE_OPTIONS='-r ts-node/register' eslint",
     "test:postcss": "node test/validate-postcss-config.js"
