@@ -37,4 +37,13 @@ describe('GraphQL API (e2e)', () => {
       expect(returned).to.be.a('number').and.to.be.greaterThan(0)
     })
   })
+
+  it('serves GraphiQL UI at /api/graphql/ui', () => {
+    cy.request('/api/graphql/ui').then((res) => {
+      expect(res.status).to.equal(200)
+      expect(res.headers['content-type']).to.include('text/html')
+      expect(res.body).to.include('GraphiQL')
+      expect(res.body).to.include('/api/graphql')
+    })
+  })
 })
