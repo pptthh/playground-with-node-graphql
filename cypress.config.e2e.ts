@@ -12,7 +12,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 // Set a default viewport for all tests (override inside individual tests if needed)
 before(() => {
-  cy.viewport(1280, 720)
+  cy.viewport(800, 600)
 })
 
 // Export to make this file a module (keeps TypeScript happy)
