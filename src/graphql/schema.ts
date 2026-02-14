@@ -4,6 +4,7 @@ import { buildSchema } from 'graphql'
 export const schema = buildSchema(`
   type Query {
     hello: String!
+    serverTime: String!
     user(id: ID!): User
     users: [User!]!
   }

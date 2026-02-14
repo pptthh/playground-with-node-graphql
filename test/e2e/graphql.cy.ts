@@ -25,4 +25,16 @@ describe('GraphQL API (e2e)', () => {
       expect(res.body.data.createUser).to.have.property('id')
     })
   })
+
+  it('returns server time as ISO string', () => {
+    cy.request('POST', '/api/graphql', { query: '{ serverTime }' }).then((res) => {
+      expect(res.status).to.equal(200)
+      expect(res.body).to.have.property('data')
+      expect(res.body.data.serverTime).to.be.a('string')
+      // basic ISO format check (YYYY-MM-DDTHH:MM:SS)
+      expect(res.body.data.serverTime).to.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)
+      const returned = new Date(res.body.data.serverTime).getTime()
+      expect(returned).to.be.a('number').and.to.be.greaterThan(0)
+    })
+  })
 })

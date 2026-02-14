@@ -8,6 +8,7 @@ const users: User[] = [
 
 export const rootValue = {
   hello: () => 'Hello from GraphQL',
+  serverTime: () => new Date().toISOString(),
   users: () => users,
   user: ({ id }: { id: string }) => users.find((u) => u.id === id) || null,
   createUser: ({ name, email }: { name: string; email?: string }) => {
