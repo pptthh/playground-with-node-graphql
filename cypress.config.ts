@@ -16,5 +16,6 @@ export default defineConfig({
     },
     specPattern: 'test/component/**/*.cy.{ts,tsx}',
     supportFile: 'cypress.config.component.ts',
+    indexHtmlFile: 'test/component/component-index.html',
   },
 })

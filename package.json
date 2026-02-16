@@ -12,8 +12,12 @@
     "lint": "eslint",
     "cy": "pnpm cy:open",
     "cy:debug": "DEBUG=cypress:* pnpm cy:open --browser electron",
-    "cy:open": "DISPLAY= cypress open",
-    "cy:run": "DISPLAY= cypress run"
+    "cy:open": "cypress open",
+    "cy:oc": "cypress open --component",
+    "cy:oe": "cypress open --e2e",
+    "cy:run": "cypress run",
+    "cy:rc": "cypress run --component",
+    "cy:re": "cypress run --e2e"
   },
   "keywords": [
     "node",
