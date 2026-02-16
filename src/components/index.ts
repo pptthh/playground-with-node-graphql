@@ -1,2 +1,2 @@
-export { Wrapper } from './Wrapper'
-export { default as WrapperDefault } from './Wrapper'
+export { Wrapper } from './wrapper'
+export { default as WrapperDefault } from './wrapper'

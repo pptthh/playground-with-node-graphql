@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'cypress/react'
-import { Wrapper } from '@/components/Wrapper'
+import { Wrapper } from '@/components/wrapper'
 
 describe('Wrapper component', () => {
   it('renders children and respects props', () => {

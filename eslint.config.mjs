@@ -2,6 +2,7 @@ import { defineConfig } from 'eslint/config';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
+import checkFilePlugin from 'eslint-plugin-check-file';
 import tsParser from '@typescript-eslint/parser';
 
 const mergedRules = {
@@ -35,6 +36,7 @@ export default defineConfig([
       'react-hooks': reactHooksPlugin,
       'jsx-a11y': jsxA11yPlugin,
       import: importPlugin,
+      'check-file': checkFilePlugin,
     },
 
     rules: {
@@ -44,6 +46,15 @@ export default defineConfig([
         { elements: ['img'], img: ['Image'] },
       ],
       'import/no-anonymous-default-export': 'warn',
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE',
+        },
+        {
+          ignoreMiddleExtensions: true,
+        },
+      ],
     },
   },
 
