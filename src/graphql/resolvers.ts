@@ -1,6 +1,6 @@
 type User = { id: string; name: string; email?: string }
 
-const getTimestamp = () => Date.now()
+const getTimestamp = (): number => Date.now()
 
 // in-memory sample data for the demo schema
 const users: User[] = [
@@ -9,11 +9,11 @@ const users: User[] = [
 ]
 
 export const rootValue = {
-  hello: () => 'Hello from GraphQL',
+  hello: (): string => 'Hello from GraphQL',
   serverTime: getTimestamp,
-  users: () => users,
-  user: ({ id }: { id: string }) => users.find((u) => u.id === id) || null,
-  createUser: ({ name, email }: { name: string; email?: string }) => {
+  users: (): User[] => users,
+  user: ({ id }: { id: string }): User | null => users.find((u) => u.id === id) || null,
+  createUser: ({ name, email }: { name: string; email?: string }): User => {
     const user: User = { id: String(users.length + 1), name, email }
     users.push(user)
     return user

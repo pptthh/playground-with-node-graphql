@@ -1,3 +1,5 @@
+// @ts-check
+
 import { defineConfig } from 'eslint/config';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
@@ -5,6 +7,8 @@ import importPlugin from 'eslint-plugin-import';
 import checkFilePlugin from 'eslint-plugin-check-file';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
 
 const mergedRules = {
   ...(importPlugin.configs?.recommended?.rules ?? {}),
@@ -25,7 +29,15 @@ const ERROR = 'error';
 const WARN = 'warn';
 
 export default defineConfig([
-  { ignores: ['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '.eslintrc.ts', 'eslint.config.ts', 'tailwind.config.ts'] },
+  { ignores: [
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    '.eslintrc.ts',
+    'eslint.config.mjs',
+    'tailwind.config.ts'
+  ] },
 
   {
     languageOptions: {
@@ -47,6 +59,8 @@ export default defineConfig([
       ...mergedRules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
+      ...eslint.configs.recommended,
+      ...tseslint.configs.recommended,
       'jsx-a11y/alt-text': [
         'warn',
         { elements: ['img'], img: ['Image'] },
@@ -78,7 +92,6 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': [ERROR, { argsIgnorePattern: '^_' }],
       '@typescript-eslint/prefer-as-const': WARN,
       '@typescript-eslint/no-explicit-any': WARN,
-      // '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
       '@typescript-eslint/explicit-module-boundary-types': WARN,
       '@typescript-eslint/no-namespace': WARN,
       '@typescript-eslint/no-empty-interface': WARN,
@@ -89,6 +102,7 @@ export default defineConfig([
       '@typescript-eslint/no-inferrable-types': WARN,
       '@typescript-eslint/no-unnecessary-type-constraint': WARN,
       '@typescript-eslint/consistent-type-assertions': WARN,
+      // '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
       // '@typescript-eslint/semi': [WARN, 'always'],
       // '@typescript-eslint/quotes': [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
       // '@typescript-eslint/member-delimiter-style': [WARN, { multiline: { delimiter: 'none' } }],

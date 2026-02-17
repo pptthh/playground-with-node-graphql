@@ -2,7 +2,7 @@ import { graphql } from 'graphql'
 import { schema } from '@/graphql/schema'
 import { rootValue } from '@/graphql/resolvers'
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<Response> {
   const body = await req.json().catch(() => ({}))
   const { query, variables, operationName } = body as {
     query?: string

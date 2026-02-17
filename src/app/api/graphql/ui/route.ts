@@ -1,4 +1,4 @@
-export async function GET() {
+export async function GET(): Promise<Response> {
   const html = `<!doctype html>
 <html>
   <head>

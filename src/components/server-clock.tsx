@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-export default function ServerClock({ live = false }: { live?: boolean }) {
+export default function ServerClock({ live = false }: { live?: boolean }): React.JSX.Element {
   const [time, setTime] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
 
