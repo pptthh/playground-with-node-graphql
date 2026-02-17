@@ -1,5 +1,7 @@
 type User = { id: string; name: string; email?: string }
 
+const getTimestamp = () => Date.now()
+
 // in-memory sample data for the demo schema
 const users: User[] = [
   { id: '1', name: 'Alice', email: 'alice@example.com' },
@@ -8,7 +10,7 @@ const users: User[] = [
 
 export const rootValue = {
   hello: () => 'Hello from GraphQL',
-  serverTime: () => new Date().toISOString(),
+  serverTime: getTimestamp,
   users: () => users,
   user: ({ id }: { id: string }) => users.find((u) => u.id === id) || null,
   createUser: ({ name, email }: { name: string; email?: string }) => {

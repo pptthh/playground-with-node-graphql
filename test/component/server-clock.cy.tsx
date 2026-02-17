@@ -7,7 +7,7 @@ describe('ServerClock component', () => {
     cy.intercept('POST', '/api/graphql', {
       statusCode: 200,
       body: {
-        data: { serverTime: '2024-01-15T10:30:00.000Z' },
+        data: { serverTime: 1705315800000 },
       },
     }).as('getServerTime')
 
@@ -23,7 +23,7 @@ describe('ServerClock component', () => {
     cy.intercept('POST', '/api/graphql', {
       statusCode: 200,
       body: {
-        data: { serverTime: '2024-01-15T10:30:00.000Z' },
+        data: { serverTime: 1705315800000 },
       },
     }).as('getServerTime')
 
