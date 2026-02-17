@@ -4,6 +4,7 @@ import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
 import checkFilePlugin from 'eslint-plugin-check-file';
 import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
 
 const mergedRules = {
   ...(importPlugin.configs?.recommended?.rules ?? {}),
@@ -41,6 +42,8 @@ export default defineConfig([
 
     rules: {
       ...mergedRules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      ...jsxA11yPlugin.configs.recommended.rules,
       'jsx-a11y/alt-text': [
         'warn',
         { elements: ['img'], img: ['Image'] },
@@ -63,6 +66,14 @@ export default defineConfig([
     languageOptions: {
       parser: tsParser,
       parserOptions: { sourceType: 'module', ecmaFeatures: { jsx: true }, warnOnUnsupportedTypeScriptVersion: true },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
 
