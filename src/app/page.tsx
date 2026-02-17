@@ -1,8 +1,10 @@
 import Image from "next/image";
 import ServerTime from "@/components/server-clock";
+import { Wrapper } from "@/components";
 
 export default function Home(): React.JSX.Element {
   return (
+    <Wrapper>
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
@@ -63,5 +65,6 @@ export default function Home(): React.JSX.Element {
         </div>
       </main>
     </div>
+    </Wrapper>
   );
 }
