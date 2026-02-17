@@ -86,11 +86,10 @@ const lintConfig = ([
       'no-ternary': OFF,
       'no-negated-condition': OFF,
       'func-style': OFF,
-      
+      'sort-keys': OFF,
       'camelcase': OFF,
 
 // The following rules are turned off to allow more flexibility during development. They can be re-enabled later for stricter code quality enforcement.
-      'sort-keys': OFF,
       'id-length': OFF,
       'capitalized-comments': OFF,
       'arrow-body-style': OFF,
