@@ -1,12 +1,11 @@
-// // @ts-check
-
-import { defineConfig } from 'eslint/config';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import importPlugin from 'eslint-plugin-import';
-import checkFilePlugin from 'eslint-plugin-check-file';
-import tsParser from '@typescript-eslint/parser';
+import eslint from '@eslint/js';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import checkFilePlugin from 'eslint-plugin-check-file';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 const mergedRules = {
@@ -24,8 +23,7 @@ const mergedSettings = {
   },
 };
 
-const ERROR = 'error';
-const WARN = 'warn';
+const [ERROR, WARN, OFF] = ['error', 'warn', 'off'];
 
 const lintConfig = ([
   { ignores: [
@@ -57,22 +55,33 @@ const lintConfig = ([
       ...mergedRules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
+      ...eslint.configs.all.rules,
       ...tseslint.configs.strict.rules,
-
-      'jsx-a11y/alt-text': [
-        'warn',
-        { elements: ['img'], img: ['Image'] },
-      ],
-      'import/no-anonymous-default-export': 'warn',
-      'check-file/filename-naming-convention': [
-        'error',
-        {
-          '**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE',
-        },
-        {
-          ignoreMiddleExtensions: true,
-        },
-      ],
+      'no-undef': OFF,
+      'no-ternary': OFF,
+      'no-negated-condition': OFF,
+      
+      'jsx-a11y/alt-text': [WARN,{ elements: ['img'], img: ['Image'] },],
+      'import/no-anonymous-default-export': [WARN],
+      'curly': [WARN, 'all'],
+      'nonblock-statement-body-position': [WARN, 'below'],
+      'no-console': [WARN, { allow: ['debug', 'warn', 'error'] }],
+      'no-magic-numbers': [WARN, { ignore: [-1, 0, 1], ignoreArrayIndexes: true, enforceConst: true }],
+      'sort-imports': [WARN, { ignoreCase: true, ignoreDeclarationSort: true }],
+      'sort-keys': [WARN, 'asc', { caseSensitive: false, minKeys: 2 }],
+      'camelcase': [WARN, { properties: 'always' }],
+      'eqeqeq': [WARN, 'always', { null: 'ignore' }],
+      'new-cap': [WARN, { newIsCap: true, capIsNew: false }],
+      'one-var': [WARN, { var: 'never', let: 'never'}],
+      'id-length': [WARN, { min: 2, exceptions: ['x', 'y', 'z'] }],
+      'capitalized-comments': [WARN, 'always'],
+      'arrow-body-style': [WARN, 'as-needed'],
+      'require-unicode-regexp': [WARN],
+      'max-lines-per-function': [WARN, { max: 100, skipComments: true, skipBlankLines: false }],
+      'consistent-return': [WARN],
+      
+      'check-file/filename-naming-convention': [ERROR, {'**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE'}, {ignoreMiddleExtensions: true}],
+      'no-eval': ERROR,
     },
   },
 
@@ -89,29 +98,8 @@ const lintConfig = ([
       ...tsPlugin.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': [ERROR, { argsIgnorePattern: '^_' }],
       '@typescript-eslint/prefer-as-const': WARN,
-      
-      // '@typescript-eslint/no-explicit-any': WARN,
-      // '@typescript-eslint/explicit-module-boundary-types': WARN,
-      // '@typescript-eslint/no-namespace': WARN,
-      // '@typescript-eslint/no-empty-interface': WARN,
-      // '@typescript-eslint/ban-ts-comment': WARN,
-      // '@typescript-eslint/no-non-null-assertion': WARN,
-      // '@typescript-eslint/consistent-type-imports': [WARN, { prefer: 'type-imports' }],
-      // '@typescript-eslint/no-empty-function': WARN,
-      // '@typescript-eslint/no-inferrable-types': WARN,
-      // '@typescript-eslint/no-unnecessary-type-constraint': WARN,
-      // '@typescript-eslint/consistent-type-assertions': WARN,
-      // // '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
-      // // '@typescript-eslint/semi': [WARN, 'always'],
-      // // '@typescript-eslint/quotes': [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-      // // '@typescript-eslint/member-delimiter-style': [WARN, { multiline: { delimiter: 'none' } }],
     },
   },
-
-
 ]);
-/**//*// */
 
-export default defineConfig(
-  lintConfig,
-);
+export default defineConfig(lintConfig);

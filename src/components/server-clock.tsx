@@ -20,13 +20,17 @@ export default function ServerClock({ live = false }: { live?: boolean }): React
   }, [])
 
   useEffect(() => {
-    if (!live || time === null) return
+    if (!live || time === null) {
+      return
+    }
     const interval = setInterval(() => {
       setTime((prev) => prev !== null ? prev + 1000 : null)
     }, 1000)
     return () => clearInterval(interval)
   }, [live, time])
 
-  if (loading) return <div data-cy="loading">Loading...</div>
+  if (loading) {
+    return <div data-cy="loading">Loading...</div>
+  }
   return <div data-cy={live ? "live-clock" : "server-time"}>{time !== null ? new Date(time).toISOString() : ''}</div>
 }
