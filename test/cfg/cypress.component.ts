@@ -1,3 +1,6 @@
+const DEFAULT_VIEWPORT_WIDTH = 800
+const DEFAULT_VIEWPORT_HEIGHT = 600
+
 // Cypress support file (loaded before test files)
 // Place global configuration and behavior that modifies Cypress here.
 
@@ -12,7 +15,7 @@ Cypress.on('uncaught:exception', (_err, _runnable) => {
 
 // Set a default viewport for all tests (override inside individual tests if needed)
 before(() => {
-  cy.viewport(800, 600)
+  cy.viewport(DEFAULT_VIEWPORT_WIDTH, DEFAULT_VIEWPORT_HEIGHT)
 })
 
 // Export to make this file a module (keeps TypeScript happy)

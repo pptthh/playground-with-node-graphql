@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
+const ONE_SECOND = 1000
+
 export default function ServerClock({ live = false }: { live?: boolean }): React.JSX.Element {
   const [time, setTime] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
@@ -24,8 +26,8 @@ export default function ServerClock({ live = false }: { live?: boolean }): React
       return
     }
     const interval = setInterval(() => {
-      setTime((prev) => prev !== null ? prev + 1000 : null)
-    }, 1000)
+      setTime((prev) => prev !== null ? prev + ONE_SECOND : null)
+    }, ONE_SECOND)
     return () => clearInterval(interval)
   }, [live, time])
 

@@ -91,7 +91,6 @@ const lintConfig = ([
 
 // The following rules are turned off to allow more flexibility during development. They can be re-enabled later for stricter code quality enforcement.
       'sort-keys': OFF,
-      'no-magic-numbers': OFF,
       'id-length': OFF,
       'capitalized-comments': OFF,
       'arrow-body-style': OFF,
