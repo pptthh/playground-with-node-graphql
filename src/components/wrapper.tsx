@@ -33,13 +33,11 @@ export const Wrapper: React.FC<WrapperProps> = ({
   maxW = 'lg',
   padded = true,
 }) => {
+
   const handleEvent = (eventType: string, data: Record<string, unknown> = {}): void => {
-    console.debug(`Event: ${eventType}`, data)
+    console.debug('Wrapper event:', { type: eventType, ...data })
   }
 
-  const handleMouseEvent = (event: React.MouseEvent<HTMLDivElement>, type: string): void => {
-    handleEvent(type, { x: event.clientX, y: event.clientY })
-  }
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>): void => {
     const target = event.currentTarget
@@ -54,8 +52,9 @@ export const Wrapper: React.FC<WrapperProps> = ({
     handleEvent('keyup', { key: event.key, code: event.code })
   }
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
-    handleEvent('keypress', { key: event.key, code: event.code })
+  const eventHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+//    console.debug('Wrapper event:', { type: eventType, ...data })
+    console.debug('Wrapper event type:', event.type, { x: event.clientX, y: event.clientY })
   }
 
   const classes = [
@@ -72,16 +71,15 @@ export const Wrapper: React.FC<WrapperProps> = ({
     <div
       className={classes}
       tabIndex={0}
-      onMouseMove={(event) => handleMouseEvent(event, 'mousemove')}
-      onClick={(event) => handleMouseEvent(event, 'click')}
-      onMouseDown={(event) => handleMouseEvent(event, 'mousedown')}
-      onMouseUp={(event) => handleMouseEvent(event, 'mouseup')}
-      onMouseEnter={() => handleEvent('mouseenter')}
-      onMouseLeave={() => handleEvent('mouseleave')}
+      onMouseMove={eventHandler}
+      onClick={eventHandler}
+      onMouseDown={eventHandler}
+      onMouseUp={eventHandler}
+      onMouseEnter={eventHandler}
+      onMouseLeave={eventHandler}
       onScroll={handleScroll}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
-      onKeyPress={handleKeyPress}
     >
       {children}
     </div>
