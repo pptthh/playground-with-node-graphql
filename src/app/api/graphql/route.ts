@@ -1,5 +1,5 @@
 import { graphql } from 'graphql'
-import schema from '@/graphql/schema'
+import { schema } from '@/graphql/schema'
 import { rootValue } from '@/graphql/resolvers'
 
 export async function POST(req: Request) {
