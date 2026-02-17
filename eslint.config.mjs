@@ -60,7 +60,9 @@ const lintConfig = ([
       'no-undef': OFF,
       'no-ternary': OFF,
       'no-negated-condition': OFF,
+      'func-style': OFF,
       
+
       'jsx-a11y/alt-text': [WARN,{ elements: ['img'], img: ['Image'] },],
       'import/no-anonymous-default-export': [WARN],
       'curly': [WARN, 'all'],
@@ -79,6 +81,9 @@ const lintConfig = ([
       'require-unicode-regexp': [WARN],
       'max-lines-per-function': [WARN, { max: 100, skipComments: true, skipBlankLines: false }],
       'consistent-return': [WARN],
+      // 'func-style': [WARN, 'expression'],
+      'require-await': [WARN],
+
       
       'check-file/filename-naming-convention': [ERROR, {'**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE'}, {ignoreMiddleExtensions: true}],
       'no-eval': ERROR,
