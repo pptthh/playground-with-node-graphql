@@ -8,7 +8,10 @@ const users: User[] = [
 
 export const rootValue = {
   hello: (): string => 'Hello from GraphQL',
-  serverTime: (): number => Date.now(),
+  serverTime: ((): number => {
+    console.log('Resolving serverTime field, returning current timestamp')
+    return new Date().getTime()
+  }),
   users: (): User[] => users,
   user: ({ id }: { id: string }): User | null => users.find((u) => u.id === id) || null,
   createUser: ({ name, email }: { name: string; email?: string }): User => {

@@ -13,11 +13,12 @@
     "cy": "pnpm cy:open",
     "cy:debug": "DEBUG=cypress:* pnpm cy:open --browser electron",
     "cy:open": "cypress open",
-    "cy:oc": "cypress open --component",
-    "cy:oe": "cypress open --e2e",
+    "cy:oc": "cypress open --browser electron --component",
+    "cy:oe": "cypress open --browser electron --e2e",
     "cy:run": "cypress run",
     "cy:rc": "cypress run --component",
-    "cy:re": "cypress run --e2e"
+    "cy:re": "cypress run --e2e",
+    "z-last": "echo 'This is the last script in the list'"
   },
   "keywords": [
     "node",

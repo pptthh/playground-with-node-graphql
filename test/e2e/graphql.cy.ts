@@ -29,15 +29,18 @@ describe('GraphQL API (e2e)', () => {
     })
   })
 
-  it('returns server time as ISO string', () => {
+  it('returns server time as timestamp', () => {
+    const MAX_TIME_DIFF = 1000;
     cy.request('POST', '/api/graphql', { query: '{ serverTime }' }).then((res) => {
       expect(res.status).to.equal(HTTP_OK)
       expect(res.body).to.have.property('data')
-      expect(res.body.data.serverTime).to.be.a('string')
-      // Basic ISO format check (YYYY-MM-DDTHH:MM:SS)
-      expect(res.body.data.serverTime).to.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/u)
-      const returned = new Date(res.body.data.serverTime).getTime()
-      expect(returned).to.be.a('number').and.to.be.greaterThan(0)
+      expect(res.body.data.serverTime).to.be.a('number')
+
+      const date = new Date(res.body.data.serverTime)
+      expect(date.getTime()).to.be.a('number').and.to.be.greaterThan(0)
+
+      expect(res.body.data.serverTime).to.be.greaterThan(Date.now() - MAX_TIME_DIFF)
+      expect(res.body.data.serverTime).to.be.lessThan(Date.now() + MAX_TIME_DIFF)
     })
   })
 
