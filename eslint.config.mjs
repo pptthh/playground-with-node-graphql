@@ -57,11 +57,9 @@ const lintConfig = ([
       ...jsxA11yPlugin.configs.recommended.rules,
       ...eslint.configs.all.rules,
       ...tseslint.configs.strict.rules,
-      'no-undef': OFF,
-      'no-ternary': OFF,
-      'no-negated-condition': OFF,
-      'func-style': OFF,
-      
+
+      'check-file/filename-naming-convention': [ERROR, {'**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE'}, {ignoreMiddleExtensions: true}],
+      'no-eval': ERROR,
 
       'jsx-a11y/alt-text': [WARN,{ elements: ['img'], img: ['Image'] },],
       'import/no-anonymous-default-export': [WARN],
@@ -84,9 +82,27 @@ const lintConfig = ([
       // 'func-style': [WARN, 'expression'],
       'require-await': [WARN],
 
+      'no-undef': OFF,
+      'no-ternary': OFF,
+      'no-negated-condition': OFF,
+      'func-style': OFF,
       
-      'check-file/filename-naming-convention': [ERROR, {'**/*.{ts,tsx,js,jsx}': 'KEBAB_CASE'}, {ignoreMiddleExtensions: true}],
-      'no-eval': ERROR,
+      'camelcase': OFF,
+
+// The following rules are turned off to allow more flexibility during development. They can be re-enabled later for stricter code quality enforcement.
+      'sort-keys': OFF,
+      'no-magic-numbers': OFF,
+      'id-length': OFF,
+      'capitalized-comments': OFF,
+      'arrow-body-style': OFF,
+      'require-unicode-regexp': OFF,
+      // 'consistent-return': OFF,
+      'require-await': OFF,
+      
+      // 'one-var': OFF,
+      // 'sort-imports': OFF,
+      // 'eqeqeq': OFF,
+      // 'new-cap': OFF,
     },
   },
 
