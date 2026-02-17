@@ -1,4 +1,4 @@
-// @ts-check
+// // @ts-check
 
 import { defineConfig } from 'eslint/config';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
@@ -7,7 +7,6 @@ import importPlugin from 'eslint-plugin-import';
 import checkFilePlugin from 'eslint-plugin-check-file';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
-import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 const mergedRules = {
@@ -28,13 +27,12 @@ const mergedSettings = {
 const ERROR = 'error';
 const WARN = 'warn';
 
-export default defineConfig([
+const lintConfig = ([
   { ignores: [
     '.next/**',
     'out/**',
     'build/**',
     'next-env.d.ts',
-    '.eslintrc.ts',
     'eslint.config.mjs',
     'tailwind.config.ts'
   ] },
@@ -59,8 +57,8 @@ export default defineConfig([
       ...mergedRules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
-      ...eslint.configs.recommended,
-      ...tseslint.configs.recommended,
+      ...tseslint.configs.strict.rules,
+
       'jsx-a11y/alt-text': [
         'warn',
         { elements: ['img'], img: ['Image'] },
@@ -91,23 +89,29 @@ export default defineConfig([
       ...tsPlugin.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': [ERROR, { argsIgnorePattern: '^_' }],
       '@typescript-eslint/prefer-as-const': WARN,
-      '@typescript-eslint/no-explicit-any': WARN,
-      '@typescript-eslint/explicit-module-boundary-types': WARN,
-      '@typescript-eslint/no-namespace': WARN,
-      '@typescript-eslint/no-empty-interface': WARN,
-      '@typescript-eslint/ban-ts-comment': WARN,
-      '@typescript-eslint/no-non-null-assertion': WARN,
-      '@typescript-eslint/consistent-type-imports': [WARN, { prefer: 'type-imports' }],
-      '@typescript-eslint/no-empty-function': WARN,
-      '@typescript-eslint/no-inferrable-types': WARN,
-      '@typescript-eslint/no-unnecessary-type-constraint': WARN,
-      '@typescript-eslint/consistent-type-assertions': WARN,
-      // '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
-      // '@typescript-eslint/semi': [WARN, 'always'],
-      // '@typescript-eslint/quotes': [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-      // '@typescript-eslint/member-delimiter-style': [WARN, { multiline: { delimiter: 'none' } }],
+      
+      // '@typescript-eslint/no-explicit-any': WARN,
+      // '@typescript-eslint/explicit-module-boundary-types': WARN,
+      // '@typescript-eslint/no-namespace': WARN,
+      // '@typescript-eslint/no-empty-interface': WARN,
+      // '@typescript-eslint/ban-ts-comment': WARN,
+      // '@typescript-eslint/no-non-null-assertion': WARN,
+      // '@typescript-eslint/consistent-type-imports': [WARN, { prefer: 'type-imports' }],
+      // '@typescript-eslint/no-empty-function': WARN,
+      // '@typescript-eslint/no-inferrable-types': WARN,
+      // '@typescript-eslint/no-unnecessary-type-constraint': WARN,
+      // '@typescript-eslint/consistent-type-assertions': WARN,
+      // // '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
+      // // '@typescript-eslint/semi': [WARN, 'always'],
+      // // '@typescript-eslint/quotes': [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+      // // '@typescript-eslint/member-delimiter-style': [WARN, { multiline: { delimiter: 'none' } }],
     },
   },
 
 
 ]);
+/**//*// */
+
+export default defineConfig(
+  lintConfig,
+);
