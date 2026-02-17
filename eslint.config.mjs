@@ -21,6 +21,9 @@ const mergedSettings = {
   },
 };
 
+const ERROR = 'error';
+const WARN = 'warn';
+
 export default defineConfig([
   { ignores: ['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '.eslintrc.ts', 'eslint.config.ts', 'tailwind.config.ts'] },
 
@@ -72,8 +75,23 @@ export default defineConfig([
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [ERROR, { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/prefer-as-const': WARN,
+      '@typescript-eslint/no-explicit-any': WARN,
+      '@typescript-eslint/comma-dangle': [ERROR, 'always-multiline'],
+      '@typescript-eslint/explicit-module-boundary-types': WARN,
+      '@typescript-eslint/no-namespace': WARN,
+      '@typescript-eslint/no-empty-interface': WARN,
+      '@typescript-eslint/ban-ts-comment': WARN,
+      '@typescript-eslint/no-non-null-assertion': WARN,
+      '@typescript-eslint/consistent-type-imports': [WARN, { prefer: 'type-imports' }],
+      '@typescript-eslint/no-empty-function': WARN,
+      '@typescript-eslint/no-inferrable-types': WARN,
+      '@typescript-eslint/no-unnecessary-type-constraint': WARN,
+      '@typescript-eslint/consistent-type-assertions': WARN,
+      '@typescript-eslint/semi': [WARN, 'always'],
+      '@typescript-eslint/quotes': [WARN, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+      '@typescript-eslint/member-delimiter-style': [WARN, { multiline: { delimiter: 'none' } }],
     },
   },
 
