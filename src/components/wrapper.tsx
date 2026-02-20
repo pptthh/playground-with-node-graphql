@@ -21,43 +21,12 @@ const maxWidthMap: Record<NonNullable<WrapperProps['maxW']>, string> = {
   xl: 'max-w-5xl',
 }
 
-/**
- * Basic Wrapper component — small, well-typed, and easy to extend.
- * - Renders a `div` with sensible Tailwind defaults
- * - Accepts `className`, `center`, `maxW`, and `padded`
- */
-export const Wrapper: React.FC<WrapperProps> = ({
-  children,
+  const classes = ({
   className = '',
   center = false,
   maxW = 'lg',
   padded = true,
-}) => {
-
-  const handleEvent = (eventType: string, data: Record<string, unknown> = {}): void => {
-    console.debug('Wrapper event:', { type: eventType, ...data })
-  }
-
-
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>): void => {
-    const target = event.currentTarget
-    handleEvent('scroll', { scrollTop: target.scrollTop, scrollLeft: target.scrollLeft })
-  }
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
-    handleEvent('keydown', { key: event.key, code: event.code })
-  }
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
-    handleEvent('keyup', { key: event.key, code: event.code })
-  }
-
-  const eventHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-//    console.debug('Wrapper event:', { type: eventType, ...data })
-    console.debug('Wrapper event type:', event.type, { x: event.clientX, y: event.clientY })
-  }
-
-  const classes = [
+}) => [
     'w-full',
     padded ? 'p-4' : '',
     center ? 'mx-auto text-center' : '',
@@ -67,21 +36,52 @@ export const Wrapper: React.FC<WrapperProps> = ({
     .filter(Boolean)
     .join(' ')
 
+const eventHandler = (event: unknown, props?: unknown): void => {
+  if (event instanceof UIEvent) {
+    console.debug('Wrapper event type:', {event, props})
+  }
+}
+
+const eventListenerTypes = [
+  'mouseup',
+  'mousedown',
+  'mousemove',
+  'mouseenter',
+  'mouseout',
+  'mouseleave',
+  'mouseover',
+  'click',
+  'dblclick',
+  'contextmenu',
+  'keydown',
+  'keyup',
+  'touchstart',
+  'touchend',
+  'scroll',
+  'scrollend',
+  'resize',
+  'load'
+]
+
+const addMouseEventListener = (displayObject: HTMLElement): void => {
+  eventListenerTypes.map(
+    eventType => displayObject.addEventListener(eventType, eventHandler)
+  );
+}
+
+/**
+ * Basic Wrapper component — small, well-typed, and easy to extend.
+ * - Renders a `div` with sensible Tailwind defaults
+ * - Accepts `className`, `center`, `maxW`, and `padded`
+ */
+export const Wrapper: React.FC<WrapperProps> = (props) => {
+  if (typeof document.body !== 'undefined') {
+    addMouseEventListener(document.body);
+  }
+
   return (
-    <div
-      className={classes}
-      tabIndex={0}
-      onMouseMove={eventHandler}
-      onClick={eventHandler}
-      onMouseDown={eventHandler}
-      onMouseUp={eventHandler}
-      onMouseEnter={eventHandler}
-      onMouseLeave={eventHandler}
-      onScroll={handleScroll}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-    >
-      {children}
+    <div className={ classes(props)}>
+      {props.children}
     </div>
   )
 }
