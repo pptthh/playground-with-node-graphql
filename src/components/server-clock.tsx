@@ -22,13 +22,16 @@ export default function ServerClock({ live = false }: { live?: boolean }): React
   }, [])
 
   useEffect(() => {
-    if (!live || time === null) {
-      return
+    let cleanup = () => {
+      // noop
     }
-    const interval = setInterval(() => {
-      setTime((prev) => prev !== null ? prev + UPDATE_CLOCK_TIMER : null)
-    }, UPDATE_CLOCK_TIMER)
-    return () => clearInterval(interval)
+    if (live && time !== null) {
+      const interval = setInterval(() => {
+        setTime((prev) => prev !== null ? prev + UPDATE_CLOCK_TIMER : null)
+      }, UPDATE_CLOCK_TIMER)
+      cleanup = () => clearInterval(interval)
+    }
+    return cleanup
   }, [live, time])
 
   if (loading) {

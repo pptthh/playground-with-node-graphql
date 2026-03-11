@@ -9,7 +9,7 @@ const users: User[] = [
 export const rootValue = {
   hello: (): string => 'Hello from GraphQL',
   serverTime: ((): number => {
-    console.log('Resolving serverTime field, returning current timestamp')
+    console.debug('Resolving serverTime field, returning current timestamp')
     return new Date().getTime()
   }),
   users: (): User[] => users,
