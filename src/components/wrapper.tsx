@@ -1,7 +1,7 @@
 'use client'
 
 import addEventListener from '@/app/utils/event-listeners'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export type WrapperProps = {
   children?: React.ReactNode
@@ -38,10 +38,7 @@ export type WrapperProps = {
     .join(' ')
 
 export const Wrapper: React.FC<WrapperProps> = (props) => {
-  const document = window?.document;
-  if (typeof document.body !== 'undefined') {
-    addEventListener(document.body);
-  }
+  useEffect(() => addEventListener(document.body), []);
 
   return (
     <div className={ classes(props)}>
