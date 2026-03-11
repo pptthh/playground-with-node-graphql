@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ServerTime from "@/components/server-clock";
-import { Wrapper } from "@/components";
+import { Wrapper, PopupButton } from "@/components";
 
 export default function Home(): React.JSX.Element {
   return (
@@ -41,6 +41,7 @@ export default function Home(): React.JSX.Element {
             center.
           </p>
           <ServerTime live/>
+          <PopupButton />
         </div>
         <div>
         {/*
