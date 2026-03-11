@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ServerTime from "@/components/server-clock";
-import { Wrapper, PopupButton } from "@/components";
+import { PopupButton, Wrapper } from "@/components";
 
 export default function Home(): React.JSX.Element {
   return (

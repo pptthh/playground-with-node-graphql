@@ -17,16 +17,26 @@ export const PopupButton: React.FC = () => {
 
       {open && (
         <div
+          aria-label="Close popup"
           data-cy="popup-overlay"
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-          onClick={() => setOpen(false)}
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) { setOpen(false) }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') { setOpen(false) }
+          }}
         >
           <div
+            aria-labelledby="popup-title"
+            aria-modal="true"
             data-cy="popup-dialog"
             className="relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl dark:bg-zinc-900"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
           >
-            <h2 className="mb-4 text-xl font-semibold text-black dark:text-zinc-50">
+            <h2 id="popup-title" className="mb-4 text-xl font-semibold text-black dark:text-zinc-50">
               Hello from the popup!
             </h2>
             <p className="mb-6 text-zinc-600 dark:text-zinc-400">
