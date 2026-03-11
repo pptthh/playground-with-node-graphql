@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const ONE_SECOND = 1000
+const UPDATE_CLOCK_TIMER = 123
 
 export default function ServerClock({ live = false }: { live?: boolean }): React.JSX.Element {
   const [time, setTime] = useState<number | null>(null)
@@ -26,8 +26,8 @@ export default function ServerClock({ live = false }: { live?: boolean }): React
       return
     }
     const interval = setInterval(() => {
-      setTime((prev) => prev !== null ? prev + ONE_SECOND : null)
-    }, ONE_SECOND)
+      setTime((prev) => prev !== null ? prev + UPDATE_CLOCK_TIMER : null)
+    }, UPDATE_CLOCK_TIMER)
     return () => clearInterval(interval)
   }, [live, time])
 
