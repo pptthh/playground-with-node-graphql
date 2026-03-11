@@ -38,6 +38,7 @@ export type WrapperProps = {
     .join(' ')
 
 export const Wrapper: React.FC<WrapperProps> = (props) => {
+  const document = window?.document;
   if (typeof document.body !== 'undefined') {
     addEventListener(document.body);
   }
